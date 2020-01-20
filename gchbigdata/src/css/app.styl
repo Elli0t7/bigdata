@@ -1,0 +1,211 @@
+@import '~variables'
+
+html
+ font-size 625%
+ -webkit-text-size-adjust:none;
+body 
+ font-size 10%
+
+@media only screen and (max-width:1200px){
+ html{
+  font-size 500%
+ }
+.page{
+   padding: 0 !important
+   }
+}
+body 
+ height 100%
+@font-face
+  font-family: DinBold;
+  src:url('../statics/font/DIN Regular.otf')
+   
+@font-face
+  font-family: LTDH;
+  src:url('../statics/font/FZLTDHJW_GBK.ttf')
+
+border-red-linear(){
+  border-image linear-gradient(-45deg,#e87568,#f7335e);
+   
+}
+border-blue-linear(){
+  border-image linear-gradient(-45deg,#457dfe,#29d5fd);
+}
+border-purple-linear(){
+  border-image linear-gradient(-45deg,#8b34fd,#4842fb);
+}
+.bg-rl--45{ 
+  background-image $bg-rl-45  
+  background-size 100%  
+}
+.bg-rl-0{
+  background-image $bg-rl0  
+  background-size: 100%
+}
+.bg-bl--45{   
+  background-image $bg-bl-45   
+  background-size: 100%
+}
+.bg-bl-0{
+  background-image $bg-bl0
+  background-size: 100%
+}
+.bg-pl--45{
+  background-image $bg-pl-45
+  background-size: 100%
+}
+.bg-pl-0{
+  background-image $bg-pl0
+  background-size: 100%
+}
+
+.text-rl
+  color $rl !important
+
+.text-bl
+  color $bl
+  
+.text-pl
+  color $pl
+.page
+  background-color $primary 
+  color $font-color
+  padding 0 .05rem 0 60px
+
+.lr-sm-pd
+ padding 0 .05rem
+.section-bg{
+  background-color $section-bg
+  border 1px solid #33566d 
+  }
+.section-padding
+  padding .5vh
+
+// .round-border
+//   border-radius .06rem
+
+.sel-box
+  border 1px solid white
+  padding .04rem
+.first-row
+  height 46vh
+.second-row
+  height 33.5vh
+
+.left-head  
+  padding .2rem 0  
+  .q-tabs-head
+   font-size .18rem
+   background-color transparent !important 
+   bold()
+   .active 
+    .q-tab-label
+        blue-linear()
+      // .q-tabs-bar
+     
+  .search-box
+    border 1px solid rgba(255,255,255,.5)   
+    padding .08rem .05rem
+
+@keyframes pulse
+  0%
+    opacity 0 
+  100%
+    opacity 1
+    transform scale(1.4)
+  
+.marker_shark
+ animation-name: pulse;
+ animation-duration: .4s;
+ animation-timing-function: linear; 
+ animation-iteration-count: infinite;
+ animation-direction: alternate;
+ animation-play-state: running; 
+
+.overview-box 
+ //border-radius .06rem
+ //height 10vh
+ padding 1.8vh
+ font-size .1rem
+.overview-header
+  medium()
+  font-size 1.8vh
+  color #18ffff
+  padding-left .8vh
+  border-left .4vh solid rgba(255,255,255,.5)
+  line-height 1.2vh
+.overview-quantity
+  font-family DinBold
+  font-size 3.6vh
+  line-height 3.8vh  
+  bold()
+  text-align center
+  padding-top 2.25vh
+  padding-bottom 1.2vh 
+.overview-total
+  font-size 1.8vh
+  font-family DinBold
+.overview-footer
+  font-size 1.6vh
+  line-height 1.6vh
+  text-align center
+  color #18ffff
+.c_t
+  padding .3rem .3rem 0
+  text-align center
+  font-size .18rem
+  color #18ffff
+.monitor
+  padding .15rem 
+#my-swiper
+  overflow hidden
+  height 15vh
+.video-box
+  z-index 161
+  position absolute  
+  top 0
+  left 0 
+  width 3rem
+  height 2rem
+  video
+    background black 
+  .video-btn
+   position absolute
+   right 5px
+   top 5px
+#allmap
+  height: 100%
+.cust-col
+  height 88vh  !important
+
+.q-datetime-clockstring
+  font-size .27rem
+.q-datetime-ampm
+  font-size .09rem  
+
+.admin-bg
+  background rgb(87,142,190)
+.admin-padding
+  padding .5rem
+  overflow hidden
+.admin-table
+  background $primary  
+.qf {
+    max-width: 15vh;
+  }
+@media screen and (-ms-high-contrast:active), all and (-ms-high-contrast:none)
+{ 
+  .q-if > .q-if-inner > div > input.q-input-target {
+  min-width inherit
+  }
+  .q-if > .q-if-inner > div > .q-input-target {
+  -ms-flex-preferred-size 0 !important
+  }
+  .q-modal-layout {
+    min-height inherit !important
+    overflow: hidden;
+  }
+}
+
+
+
