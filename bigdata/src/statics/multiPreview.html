@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+
+</head>
+
+<body style="margin:0">
+  <object classid="clsid:BE020CC9-521F-4641-85E1-3B631B7ADDD9" id="preview" width="100%" height="100%" name="preview">
+    <PARAM NAME="Ip" VALUE="10.33.27.144" />
+    <PARAM NAME="UserName " VALUE="admin" />
+    <PARAM NAME="PrivilegeCode" VALUE="0401,0402," />
+  </object>  
+  <script type="text/javascript" src="webVideoCtrl.js"></script>  
+  <script language="javascript" for="preview" event="MsgNotify(iMsg,iError,szDetail,lWnd,szIndexCode)">   
+    
+    szMsg = "msg:" + iMsg + ",error:" + iError + ",detail:" + szDetail + "，IndexCode：" + szIndexCode;
+
+    function GetRequest() {    
+          
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+          var str = url.substr(1);
+          strs = str.split("&");
+          for (var i = 0; i < strs.length; i++) {
+            theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+          }
+        }
+        return theRequest;
+      }
+     
+     
+     
+      function LoginPlat() {
+        
+        //Demo默认使用密码登录方式
+        var params = GetRequest()       
+        var v1 =
+          "<?xml version=\"1.0\" encoding=\"utf-8\"?><LoginInfo><LoginType>2</LoginType><SynLogin>1</SynLogin><IP>" +
+          params.ip + "</IP><Port>" + params.port +
+          "</Port><UserName>" + params.userName + "</UserName><Password>" + params.passWord + "</Password></LoginInfo>";
+        console.log(v1)
+        var v = preview.LoginPlat(v1);
+        if (v != 0) {
+          alert("登录失败，请查看日志preview.log");
+        } else {
+          if (params.code.indexOf(',') != -1) {
+            preview.SetLayoutType(params.layoutType)
+            let arr = params.code.split(',')
+            for (let i = 0; i < 4; i++) {
+              var _param = '<?xml version="1.0" encoding="UTF-8"?><Preview><CamIndexCode>' + arr[i] +
+                "</CamIndexCode></Preview>";
+              console.log(_param)
+              let s = preview.StartPreview(_param);
+              console.log(s)
+            }
+          } else {
+            preview.SetLayoutType(1)
+            var _param = '<?xml version="1.0" encoding="UTF-8"?><Preview><CamIndexCode>' + params.code +
+              "</CamIndexCode></Preview>";
+            console.log(_param)
+            let s = preview.StartPreview(_param);
+          }
+  
+        }
+      }
+
+    //0x02000007事件，控件加载完成时抛出的消息，此时平台根据需要调用以下接口对控件进行初始化
+    //（控件内部默认也对应设置了固定参数，但生产现场要使用上次用户设置保存的参数，需要平台把上一次保存的数据设置进去）
+    if (iMsg == 0x02000007) {
+      var _right =
+        "10034,10033,10032,10020,10027,10014,10001,10028,10002,10015,10005,10010,10024,10006,10011,10003,10021,10012,10022,10004,10013,10009,10029";
+
+      preview.SetRightCode(_right);      
+      preview.EnableMenu(0)
+      preview.EnableSysCfgButton(0)
+      preview.SetMainToolBarShow(0)
+      preview.SetToolBarVisible(0)
+      setTimeout(function () {
+        
+        LoginPlat()
+      }, 3000)
+
+
+    }
+
+  </script>
+  
+</body>
+
+</html>
